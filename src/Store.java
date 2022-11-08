@@ -37,11 +37,11 @@ public class Store {
     }
 
     public void initListSupportBurned() {
-        listSupportBurned.add(new SupportBurned(listFilm.get(0), "Blueray", true));
-        listSupportBurned.add(new SupportBurned(listFilm.get(0), "Blueray", false));
-        listSupportBurned.add(new SupportBurned(listFilm.get(0), "DVD", true));
-        listSupportBurned.add(new SupportBurned(listFilm.get(1), "DVD", true));
-        listSupportBurned.add(new SupportBurned(listFilm.get(3), "K7", true));
+        listSupportBurned.add(new SupportBurned(listFilm.get(0), new Blueray(), true));
+        listSupportBurned.add(new SupportBurned(listFilm.get(0), new Blueray(), false));
+        listSupportBurned.add(new SupportBurned(listFilm.get(0), new DVD(), true));
+        listSupportBurned.add(new SupportBurned(listFilm.get(1), new DVD(), true));
+        listSupportBurned.add(new SupportBurned(listFilm.get(3), new K7(), true));
     }
 
     public void initListLocation() {
@@ -71,7 +71,8 @@ public class Store {
 
     //-----------------------FILM CHOICE--------------------------------------
     public SupportBurned askFilm(){
-        String supportChose = "";
+        String stringSupportChose = "";
+        Support supportChose = null;
         System.out.println("Please choose your film");
         Scanner scanner = new Scanner(System.in);
         String filmChose = scanner.nextLine();
@@ -90,14 +91,18 @@ public class Store {
             //mieux utiliser line ou int?
             //tapez (1) pour blueray etc etc...
 
-            supportChose = support.nextLine();
-            if (supportChose.equals("Blueray") || supportChose.equals("DVD") || supportChose.equals("K7")) {
-                System.out.println("You chose " + listFilm.get(cpt) + " on " + supportChose);
+            stringSupportChose = support.nextLine();
+            if (stringSupportChose.equalsIgnoreCase("Blueray")) {
+                supportChose = new Blueray();
+            } else if (stringSupportChose.equalsIgnoreCase("DVD")) {
+                supportChose = new DVD();
+            } else if (stringSupportChose.equalsIgnoreCase("K7")) {
+                supportChose = new K7();
             } else {
                 System.out.println("This support doesn't exist");
                 askFilm();
-
             }
+
         }else{
             System.out.println("Error, film doesn't exist");
             askFilm();
@@ -108,7 +113,7 @@ public class Store {
     public boolean isSupportGraveAvailable(SupportBurned supportBurned) {
         int cpt = 0;
         for (int i = 0; i < listSupportBurned.size(); i++) {
-            if (listSupportBurned.get(i).getFilm().equals(supportBurned.getFilm()) && listSupportBurned.get(i).getSupport().equals(supportBurned.getSupport()) && listSupportBurned.get(i).isAvailable()) {
+            if (listSupportBurned.get(i).getFilm().equals(supportBurned.getFilm()) && listSupportBurned.get(i).getSupport().getClass().equals(supportBurned.getSupport().getClass()) && listSupportBurned.get(i).isAvailable()) {
                 cpt = 1;
             }
         }
@@ -128,10 +133,11 @@ public class Store {
         if (isSupportGraveAvailable(wantedSupportBurned)) {
             System.out.println("Film available");
             for (int i = 0; i < listSupportBurned.size(); i++) {
-                if (listSupportBurned.get(i).getFilm().equals(wantedSupportBurned.getFilm()) && listSupportBurned.get(i).getSupport().equals(wantedSupportBurned.getSupport()) && listSupportBurned.get(i).isAvailable()) {
+                if (listSupportBurned.get(i).getFilm().equals(wantedSupportBurned.getFilm()) && listSupportBurned.get(i).getSupport().getClass().equals(wantedSupportBurned.getSupport().getClass()) && listSupportBurned.get(i).isAvailable()) {
                     cpt = i;
                 }
             }
+            System.out.println(cpt);
             //tarification
             if (listSupportBurned.get(cpt).getSupport().equals("Blueray")) {
                 tarif++;
@@ -181,7 +187,8 @@ public class Store {
                 break;
             case 4:
                 int line = getClientLine();
-                listClient.get(line).getWallet().setAmount(listClient.get(line).getWallet().getAmount()-prix) ;
+                listClient.get(line).getWallet().setAmount(listClient.get(line).getWallet().getAmount()-prix);
+                System.out.println("You have now $" + listClient.get(line).getWallet().getAmount() + " on your wallet");
                 break;
         }
     }
@@ -230,7 +237,7 @@ public class Store {
     private int getClientLine() {
         int line = -1;
         for (int i = 0; i < listClient.size(); i++) {
-            if (currentClient.getnClient()==listClient.get(i).getnClient()) {
+            if (currentClient.getnClient().equals(listClient.get(i).getnClient())) {
                 line = i;
             }
         }

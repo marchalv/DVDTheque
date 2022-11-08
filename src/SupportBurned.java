@@ -1,6 +1,6 @@
 public class SupportBurned {
     private Film film;
-    private String support;
+    private Support support;
     private boolean isAvailable;
 
     public SupportBurned() {
@@ -12,7 +12,7 @@ public class SupportBurned {
         return film.getNom() + " on " + support; // affiche seulement les films dispo
     }
 
-    public SupportBurned(Film film, String support, boolean isAvailable) {
+    public SupportBurned(Film film, Support support, boolean isAvailable) {
         this.film = film;
         this.support = support;
         this.isAvailable = isAvailable;
@@ -22,7 +22,7 @@ public class SupportBurned {
         return film;
     }
 
-    public String getSupport() {
+    public Support getSupport() {
         return support;
     }
 

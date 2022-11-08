@@ -1,7 +1,9 @@
 public class Wallet implements MeansOfPayment{
     private double amount;
 
-    public Wallet(double amount) { }
+    public Wallet(double amount) {
+        this.amount = amount;
+    }
     @Override
     public void pay() {
 
