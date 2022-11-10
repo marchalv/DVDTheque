@@ -33,7 +33,9 @@ public class Film {
         return anneeDeSortie;
     }
 
-
+    public String getGenre() {
+        return genre;
+    }
 
     @Override
     public String toString() {

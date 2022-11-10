@@ -244,6 +244,51 @@ public class Store {
         return line;
     }
 
+    // -------------------------------STATS-------------------------
+
+    protected void clientStats() {
+        asknClient();
+        int nbDVD = 0;
+        int nbBR = 0;
+        int nbK7 = 0;
+        int nbSF = 0;
+        int nbHorreur = 0;
+        int nbAction = 0;
+        int nbEnfance = 0;
+        for (int i = 0; i < listLocation.size(); i++) {
+            if (listLocation.get(i).getClient().equals(currentClient)) {
+                // denombrement par support
+                if (listLocation.get(i).getSupportBurned().getSupport().getClass().equals(DVD.class)) {
+                    nbDVD++;
+                } else if (listLocation.get(i).getSupportBurned().getSupport().getClass().equals(Blueray.class)) {
+                    nbBR++;
+                } else if (listLocation.get(i).getSupportBurned().getSupport().getClass().equals(K7.class)) {
+                    nbK7++;
+                }
+                // denombrement par genre
+                if (listLocation.get(i).getSupportBurned().getFilm().getGenre().equalsIgnoreCase("sf")) {
+                    nbSF++;
+                } else if (listLocation.get(i).getSupportBurned().getFilm().getGenre().equalsIgnoreCase("horreur")) {
+                    nbHorreur++;
+                } else if (listLocation.get(i).getSupportBurned().getFilm().getGenre().equalsIgnoreCase("action")) {
+                    nbAction++;
+                } else if (listLocation.get(i).getSupportBurned().getFilm().getGenre().equalsIgnoreCase("enfance")) {
+                    nbEnfance++;
+                }
+            }
+        }
+        System.out.println("DVD rent : " + nbDVD +
+                "\nBlueray rent : " + nbBR +
+                "\nK7 rent : " + nbK7);
+        System.out.println("\nSF film rent : " + nbSF +
+                "\nHorror film rent : " + nbHorreur +
+                "\nAction film rent : " + nbAction +
+                "\nEnfance film rent : " + nbEnfance);
+
+
+
+    }
+
 
     //------------------------------------GETTER SETTER------------------------------------------------
 

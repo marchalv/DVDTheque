@@ -42,6 +42,8 @@ public class Location {
         return supportBurned;
     }
 
+    public Client getClient() { return client; }
+
     public void setLocationFinished(boolean locationFinished) {
         isLocationFinished = locationFinished;
     }

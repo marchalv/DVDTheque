@@ -29,7 +29,8 @@ public class Main {
                     "\n 2) display customer info " +
                     "\n 3) rent DVD " +
                     "\n 4) return " +
-                    "\n 5) quit "+
+                    "\n 5) customer stats" +
+                    "\n 6) quit "+
                     "\n****************" +
                     "\n Select an option above:");
 
@@ -58,8 +59,10 @@ public class Main {
                         store.returnFilm();
                         break;
                     case 5:
-                        System.out.println("4) quit " +
-                                "\n Are you sure you want to quit? (Y/N) - all your data will be lost.");
+                        store.clientStats();
+                        break;
+                    case 6:
+                        System.out.println("\n Are you sure you want to quit? (Y/N) - all your data will be lost.");
                         scanner.nextLine(); //skip the newline
                         String checkExit = scanner.nextLine();
                         if (checkExit.equalsIgnoreCase("Y") ) {
