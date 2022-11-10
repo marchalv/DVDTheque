@@ -320,4 +320,31 @@ public class Store {
         listLocation.get(cpt).setLocationFinished(true);
         System.out.println("Return OK");
     }
+
+    public void reservationFilm(){
+        Scanner typedate = new Scanner(System.in);
+        System.out.println("Enter the year reservation : ");
+        int yearReservation = typedate.nextInt();
+        System.out.println("Enter the month reservation : ");
+        int monthReservation = typedate.nextInt();
+        System.out.println("Enter the day reservation : ");
+        int dayReservation = typedate.nextInt();
+
+        Date dateChoosed = new Date(yearReservation-1900, monthReservation-1, dayReservation);
+        System.out.println("You choosed to reserve the film on : " + dateChoosed.toString());
+        System.out.println();
+        System.out.println("Please choose a duration Reservation (between 1 and 3 days) : ");
+        Scanner howLongTimeReservation = new Scanner(System.in);
+        int durationReservation = howLongTimeReservation.nextInt();
+        Date endDate = new Date(yearReservation-1900, monthReservation-1, dayReservation+durationReservation);
+        System.out.println("You must to return your film at :" + endDate.toString());
+        double tarifReservation = 0;
+        tarifReservation += durationReservation * 2;
+        System.out.println("You have to pay "+ tarifReservation +"$");
+        chooseMeanOfPayment(tarifReservation);
+
+
+
+
+    }
 }

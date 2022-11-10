@@ -5,11 +5,13 @@ public class Reservation {
     private Date dateReservation;
     private Film film;
     private Support support;
+    private Date endDateReservation;
 
-    protected Reservation(Client client, Date dateReservation, Film film, Support support) {
+    protected Reservation(Client client, Date dateReservation, Film film, Support support, Date endDateReservation) {
         this.client = client;
         this.dateReservation = dateReservation;
         this.film = film;
         this.support = support;
+        this.endDateReservation = endDateReservation;
     }
 }

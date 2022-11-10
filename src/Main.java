@@ -30,7 +30,8 @@ public class Main {
                     "\n 3) rent DVD " +
                     "\n 4) return " +
                     "\n 5) customer stats" +
-                    "\n 6) quit "+
+                    "\n 6) reservation" +
+                    "\n 7) quit "+
                     "\n****************" +
                     "\n Select an option above:");
 
@@ -62,6 +63,9 @@ public class Main {
                         store.clientStats();
                         break;
                     case 6:
+                        store.reservationFilm();
+                        break;
+                    case 7:
                         System.out.println("\n Are you sure you want to quit? (Y/N) - all your data will be lost.");
                         scanner.nextLine(); //skip the newline
                         String checkExit = scanner.nextLine();
