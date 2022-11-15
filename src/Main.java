@@ -1,12 +1,18 @@
-import java.util.ArrayList;
+import java.text.ParseException;
 import java.util.Scanner;
 
+//Created by:
+//AZEROT Andy
+//MARCHAL Valentin
+//MD SOFIAN Megat
+//MOUS Ichem
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         new Main().run();
     }
 
-    public void run(){
+    public void run() throws ParseException {
         Store store = new Store();
 
         //initialization
@@ -79,9 +85,7 @@ public class Main {
                         again=true;
                 }
             }
-
-
         }
     }
-    }
+}
 
